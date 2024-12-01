@@ -8,7 +8,7 @@ This multi-featured approach provides a robust solution to common security needs
 
 ## Setting Up the EncryptionService
 
-First, we’ll configure the service with environment-based encryption parameters. By utilizing NestJS's `ConfigService`, we can manage sensitive information, such as encryption keys, more securely.
+First, weâ€™ll configure the service with environment-based encryption parameters. By utilizing NestJS's `ConfigService`, we can manage sensitive information, such as encryption keys, more securely.
 
 ```typescript
 import {
@@ -42,7 +42,7 @@ In this configuration:
 
 ## Secure Password Hashing with Argon2
 
-Argon2 is a memory-hard algorithm designed to be secure against brute-force attacks, making it ideal for password storage. We’ll implement methods to hash passwords and verify hashed passwords with raw inputs.
+Argon2 is a memory-hard algorithm designed to be secure against brute-force attacks, making it ideal for password storage. Weâ€™ll implement methods to hash passwords and verify hashed passwords with raw inputs.
 
 ```typescript
   async hashPassword(rawPassword: string): Promise<string> {
@@ -193,7 +193,7 @@ export class EncryptionModule {}
 
 This `EncryptionService` implementation provides a highly secure way to handle encryption, hashing, and token generation in a NestJS application. It uses best-in-class algorithms such as Argon2 for hashing and AES-256 for encryption, making it versatile and secure for any backend project.
 
-With this setup, you’ll have a robust foundation for safeguarding sensitive information, enabling more secure application development.
+With this setup, youâ€™ll have a robust foundation for safeguarding sensitive information, enabling more secure application development.
 
 
 
