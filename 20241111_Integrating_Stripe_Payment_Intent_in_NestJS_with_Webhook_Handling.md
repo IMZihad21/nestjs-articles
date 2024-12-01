@@ -187,7 +187,7 @@ export class PaymentReceiveModule {}
 ### Key Notes:
 
 - The `PaymentReceiveService` is injected into the controller to handle all business logic related to payment processing.
-- We use Stripe’s official Node.js SDK to interact with Stripe’s API, managing payment intents and webhook events.
+- We use Stripeâ€™s official Node.js SDK to interact with Stripeâ€™s API, managing payment intents and webhook events.
 - The service includes robust error handling, logging, and status updates to ensure smooth operation in a production environment.
 
 ## Conclusion
