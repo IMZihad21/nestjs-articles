@@ -214,7 +214,7 @@ constructor(model: Model<T>, logger?: Logger) {
 
 ### Methods
 
-Now let’s go through the methods defined in the GenericRepository class, explaining each and providing use cases.
+Now letâ€™s go through the methods defined in the GenericRepository class, explaining each and providing use cases.
 
 **1. Create:**
 
