@@ -1,16 +1,20 @@
-Enhancing your NestJS API with robust documentation and JWT authentication is essential for a smooth developer experience. In this article, we'll walk you through integrating Swagger UI into your NestJS application, utilizing dummy data, and customizing the UI with external assets.
+Establishing thorough API documentation and secure authentication mechanisms represents a critical requirement for modern backend development. This technical guide demonstrates how to integrate Swagger UI documentation with JSON Web Token (JWT) authentication in a NestJS application while maintaining production-grade standards.  
 
-## Step 1: Install Required Packages
+---
 
-Start by installing the necessary packages for Swagger support:
+### **Step 1: Dependency Installation**  
+
+Begin by installing the official Swagger module for NestJS:  
 
 ```bash
 npm install @nestjs/swagger
-```
+```  
 
-## Step 2: Create Swagger Configuration
+---
 
-Create a file (`swagger.config.ts`), configure Swagger using the following code snippet with dummy data for demonstration:
+### **Step 2: Swagger Configuration Setup**  
+
+Create a dedicated configuration file (`swagger.config.ts`) with the following implementation:  
 
 ```typescript
 import { INestApplication } from "@nestjs/common";
@@ -21,9 +25,9 @@ import {
 } from "@nestjs/swagger";
 
 const documentConfig = new DocumentBuilder()
-  .setTitle("Dummy API")  // API Title
-  .setVersion("1.0.0")  // API Version
-  .addBearerAuth(  // Adds JWT Bearer authentication
+  .setTitle("Dummy API")
+  .setVersion("1.0.0")
+  .addBearerAuth(
     {
       type: "http",
       scheme: "bearer",
@@ -34,67 +38,75 @@ const documentConfig = new DocumentBuilder()
     },
     "Bearer",
   )
-  .addSecurityRequirements("Bearer")  // Security requirement
+  .addSecurityRequirements("Bearer")
   .build();
 
 const swaggerUiOptions: SwaggerCustomOptions = {
   swaggerOptions: {
-    persistAuthorization: true,  // Retain authorization
+    persistAuthorization: true,
   },
-  customSiteTitle: "Dummy API Documentation",  // Swagger UI title
-  customJs: [  // External JS files
+  customSiteTitle: "Dummy API Documentation",
+  customJs: [
     "https://unpkg.com/swagger-ui-dist@4.5.0/swagger-ui-bundle.js",
     "https://unpkg.com/swagger-ui-dist@4.5.0/swagger-ui-standalone-preset.js",
   ],
-  customCssUrl: [  // External CSS files
+  customCssUrl: [
     "https://unpkg.com/swagger-ui-dist@4.5.0/swagger-ui.css",
   ],
 };
 
-// Function to configure Swagger UI
 export const configureSwaggerUI = (app: INestApplication<any>) => {
-  const document = SwaggerModule.createDocument(app, documentConfig);  // Create Swagger document
-  SwaggerModule.setup("swagger", app, document, swaggerUiOptions);  // Setup Swagger UI
+  const document = SwaggerModule.createDocument(app, documentConfig);
+  SwaggerModule.setup("swagger", app, document, swaggerUiOptions);
 };
-```
+```  
 
-### Explanation
+#### **Configuration Breakdown**  
+- **Document Builder**: Defines API metadata and implements JWT authentication schema using Bearer tokens  
+- **UI Customization**: Configures persistent authorization and integrates external Swagger assets for interface customization  
 
-- **Document Configuration**: Set up a Swagger document with a title, version, and authentication.
-- **Swagger UI Options**: Configure options, including a custom title and external assets.
+---
 
-## Step 3: Integrate Swagger in Your NestJS Application
+### **Step 3: Application Integration**  
 
-Add the Swagger configuration in your `main.ts` file:
+Implement the Swagger configuration in the application entry point (`main.ts`):  
 
 ```typescript
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
-import { configureSwaggerUI } from "./swagger.config";  // Import Swagger configuration
+import { configureSwaggerUI } from "./swagger.config";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  configureSwaggerUI(app);  // Configure Swagger
-  await app.listen(4000);  // Start the application
+  configureSwaggerUI(app);
+  await app.listen(4000);
 }
 
 bootstrap();
-```
+```  
 
-## Step 4: Run Your Application
+---
 
-Now, run your NestJS application:
+### **Step 4: Application Execution**  
+
+Launch the development server using:  
 
 ```bash
 npm run start
-```
+```  
 
-## Step 5: Access Swagger UI
+---
 
-Open your browser and navigate to:
+### **Step 5: Documentation Access**  
+
+Access the interactive API documentation through your preferred browser at:  
 
 ```
 http://localhost:4000/swagger
-```
+```  
 
-You should see the Swagger UI with your Dummy API documentation!
+The Swagger interface will display all implemented endpoints with integrated JWT authentication capabilities.  
+
+---
+
+This implementation strategy provides a standardized approach to API documentation while maintaining security best practices. The configuration allows for seamless extension with additional authentication providers or documentation enhancements, serving as a foundation for scalable NestJS application development.
